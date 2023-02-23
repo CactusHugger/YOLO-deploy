@@ -42,7 +42,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         super().__init__(img_size,path_yolov7_weights,path_img_i,device_i=device_i)
     def main(self):
         st.title('YoloV7 Caries Detection')
-        st.subheader(""" Upload an image and run YoloV7 on it.
+        st.subheader(""" Notes:
         This model was trained to detect caries from an occlusal view.
         (More object classes will be added):\n""")
         st.markdown(
