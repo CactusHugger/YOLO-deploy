@@ -10,9 +10,6 @@ import logging
 
 class SingleInference_YOLOV7:
     '''
-    SimpleInference_YOLOV7
-    created by Steven Smiley 2022/11/24
-
     INPUTS:
        VARIABLES                    TYPE    DESCRIPTION
     1. img_size,                    #int#   #this is the yolov7 model size, should be square so 640 for a square 640x640 model etc.
@@ -250,8 +247,7 @@ if __name__=='__main__':
     #INPUTS
     img_size=640
     path_yolov7_weights="weights/best3.pt"
-    path_img_i=r"test_images/DJI_0028_fps24_frame00000040.jpg"
-    path_img_i=r"/media/steven/Elements/Drone_Videos_Park/FPS_DESIRED_1d5/JPEGImages/DJI_0028_fps24_frame00000040.jpg"
+    path_img_i=r"test_images/caries.jpg"
 
     #INITIALIZE THE app
     app=SingleInference_YOLOV7(img_size,path_yolov7_weights,path_img_i,device_i='cpu',conf_thres=0.25,iou_thres=0.5)

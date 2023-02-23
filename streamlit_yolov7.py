@@ -18,9 +18,6 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
 
     def new_yolo_model(self,img_size,path_yolov7_weights,path_img_i,device_i='cpu'):
         '''
-        SimpleInference_YOLOV7
-        created by Steven Smiley 2022/11/24
-
         INPUTS:
         VARIABLES                    TYPE    DESCRIPTION
         1. img_size,                    #int#   #this is the yolov7 model size, should be square so 640 for a square 640x640 model etc.
@@ -32,6 +29,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         1. predicted_bboxes_PascalVOC   #list#  #list of values for detections containing the following (name,x0,y0,x1,y1,score)
 
         CREDIT
+        Steven Smiley for interface
         Please see https://github.com/WongKinYiu/yolov7.git for Yolov7 resources (i.e. utils/models)
         @article{wang2022yolov7,
             title={{YOLOv7}: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors},
@@ -43,11 +41,10 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         '''
         super().__init__(img_size,path_yolov7_weights,path_img_i,device_i=device_i)
     def main(self):
-        st.title('Custom YoloV7 Object Detector')
+        st.title('YoloV7 Caries Detection')
         st.subheader(""" Upload an image and run YoloV7 on it.
-        This model was trained to detect the following classes from a drone's vantage point.
-        Notice where the model fails.
-        (i.e. objects too close up & too far away):\n""")
+        This model was trained to detect caries from an occlusal view.
+        (More object classes will be added):\n""")
         st.markdown(
             """
         <style>
@@ -112,7 +109,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         self.img_screen=Image.open(BytesIO(self.response.content))
 
         st.image(self.img_screen, caption=self.capt, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
-        st.markdown('YoloV7 on streamlit.  Demo of object detection with YoloV7 with a web application.')
+        st.markdown('YoloV7 caries detection demo')
         self.im0=np.array(self.img_screen.convert('RGB'))
         self.load_image_st()
         predictions = st.button('Predict on the image?')
