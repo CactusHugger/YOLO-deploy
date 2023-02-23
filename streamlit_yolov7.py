@@ -158,7 +158,7 @@ if __name__=='__main__':
     path_yolov7_weights="weights/best3.pt"
     path_img_i="https://pbs.twimg.com/media/DCXqXNeW0AEzJYA.jpg"
     #INPUTS for webapp
-    app.capt="Initial Image"
+    app.capt="Midline is probably off"
     app.new_yolo_model(img_size,path_yolov7_weights,path_img_i)
     app.conf_thres=0.65
     app.load_model() #Load the yolov7 model
