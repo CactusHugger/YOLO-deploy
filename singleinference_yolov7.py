@@ -16,7 +16,7 @@ class SingleInference_YOLOV7:
     INPUTS:
        VARIABLES                    TYPE    DESCRIPTION
     1. img_size,                    #int#   #this is the yolov7 model size, should be square so 640 for a square 640x640 model etc.
-    2. path_yolov7_weights,         #str#   #this is the path to your yolov7 weights 
+    2. path_yolov7_weights,         #str#   #this is the path to your yolov7 weights
     3. path_img_i,                  #str#   #path to a single .jpg image for inference (NOT REQUIRED, can load cv2matrix with self.load_cv2mat())
 
     OUTPUT:
@@ -31,10 +31,10 @@ class SingleInference_YOLOV7:
         journal={arXiv preprint arXiv:2207.02696},
         year={2022}
         }
-    
+
     '''
     def __init__(self,
-    img_size, path_yolov7_weights, 
+    img_size, path_yolov7_weights,
     path_img_i='None',
     device_i='cpu',
     conf_thres=0.25,
@@ -119,14 +119,14 @@ class SingleInference_YOLOV7:
     def load_cv2mat(self,im0=None):
         '''
         Loads an OpenCV matrix
-        
+
         im0 = cv2.imread(self.path_img_i)
 
         '''
         if type(im0)!=type(None):
             self.im0=im0
         if type(self.im0)!=type(None):
-            self.img=self.im0.copy()    
+            self.img=self.im0.copy()
             self.imn = cv2.cvtColor(self.im0, cv2.COLOR_BGR2RGB)
             self.img=self.imn.copy()
             image = self.img.copy()
@@ -245,11 +245,11 @@ class SingleInference_YOLOV7:
         if event==cv2.EVENT_LBUTTONUP:
             self.clicked=True
 
-if __name__=='__main__':  
+if __name__=='__main__':
 
     #INPUTS
     img_size=640
-    path_yolov7_weights="weights/best.pt"
+    path_yolov7_weights="https://www.dropbox.com/s/l1q964ttr6zbtu9/best.pt?raw=1"
     path_img_i=r"test_images/DJI_0028_fps24_frame00000040.jpg"
     path_img_i=r"/media/steven/Elements/Drone_Videos_Park/FPS_DESIRED_1d5/JPEGImages/DJI_0028_fps24_frame00000040.jpg"
 
@@ -265,12 +265,4 @@ if __name__=='__main__':
     print(f'''
     app.predicted_bboxes_PascalVOC\n
     \t name,x0,y0,x1,y1,score\n
-    {app.predicted_bboxes_PascalVOC}''') 
-
-
-
-
-
-
-
-
+    {app.predicted_bboxes_PascalVOC}''')

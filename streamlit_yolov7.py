@@ -24,7 +24,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         INPUTS:
         VARIABLES                    TYPE    DESCRIPTION
         1. img_size,                    #int#   #this is the yolov7 model size, should be square so 640 for a square 640x640 model etc.
-        2. path_yolov7_weights,         #str#   #this is the path to your yolov7 weights 
+        2. path_yolov7_weights,         #str#   #this is the path to your yolov7 weights
         3. path_img_i,                  #str#   #path to a single .jpg image for inference (NOT REQUIRED, can load cv2matrix with self.load_cv2mat())
 
         OUTPUT:
@@ -39,13 +39,13 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
             journal={arXiv preprint arXiv:2207.02696},
             year={2022}
             }
-        
+
         '''
         super().__init__(img_size,path_yolov7_weights,path_img_i,device_i=device_i)
     def main(self):
         st.title('Custom YoloV7 Object Detector')
-        st.subheader(""" Upload an image and run YoloV7 on it.  
-        This model was trained to detect the following classes from a drone's vantage point. 
+        st.subheader(""" Upload an image and run YoloV7 on it.
+        This model was trained to detect the following classes from a drone's vantage point.
         Notice where the model fails.
         (i.e. objects too close up & too far away):\n""")
         st.markdown(
@@ -106,7 +106,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
             text_i_list.append(f'{i}: {name_i}\n')
         st.selectbox('Classes',tuple(text_i_list))
         self.conf_selection=st.selectbox('Confidence Threshold',tuple([0.1,0.25,0.5,0.75,0.95]))
-        
+
         self.response=requests.get(self.path_img_i)
 
         self.img_screen=Image.open(BytesIO(self.response.content))
@@ -133,7 +133,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
             return self.im0
         else:
             return None
-    
+
     def predict(self):
         self.conf_thres=self.conf_selection
         st.write('Loading image')
@@ -142,7 +142,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         self.inference()
 
         self.img_screen=Image.fromarray(self.image).convert('RGB')
-        
+
         self.capt='DETECTED:'
         if len(self.predicted_bboxes_PascalVOC)>0:
             for item in self.predicted_bboxes_PascalVOC:
@@ -151,20 +151,19 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
                 self.capt=self.capt+ ' name='+name+' confidence='+conf+'%, '
         st.image(self.img_screen, caption=self.capt, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
         self.image=None
-    
+
 
 if __name__=='__main__':
     app=Streamlit_YOLOV7()
 
     #INPUTS for YOLOV7
     img_size=1056
-    path_yolov7_weights="weights/best.pt"
+    path_yolov7_weights="https://www.dropbox.com/s/l1q964ttr6zbtu9/best.pt?raw=1"
     path_img_i="https://raw.githubusercontent.com/stevensmiley1989/STREAMLIT_YOLOV7/main/test_images/DJI_0028_fps24_frame00000040.jpg"
     #INPUTS for webapp
     app.capt="Initial Image"
     app.new_yolo_model(img_size,path_yolov7_weights,path_img_i)
     app.conf_thres=0.65
     app.load_model() #Load the yolov7 model
-    
-    app.main()
 
+    app.main()
