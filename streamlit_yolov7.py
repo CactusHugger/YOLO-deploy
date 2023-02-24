@@ -88,10 +88,10 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
             """
             <style>
             .reportview-container {
-                background: url("https://pbs.twimg.com/media/FWLR6g2UUAAnoRY?format=jpg")
+                background: url("https://pbs.twimg.com/media/Fo2hPEDaAAg23Jp?format=jpg&name=large")
             }
         .sidebar .sidebar-content {
-                background: url("https://pbs.twimg.com/media/FWLR6g2UUAAnoRY?format=jpg")
+                background: url("https://pbs.twimg.com/media/Fo2hPEDaAAg23Jp?format=jpg&name=large")
             }
             </style>
             """,
