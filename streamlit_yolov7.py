@@ -156,7 +156,7 @@ if __name__=='__main__':
     #INPUTS for YOLOV7
     img_size=1056
     path_yolov7_weights="weights/best3.pt"
-    path_img_i="https://pbs.twimg.com/media/DCXqXNeW0AEzJYA.jpg"
+    path_img_i="https://pbs.twimg.com/media/Da6NjPZXcAU2IvL.jpg"
     #INPUTS for webapp
     app.capt="Midline is probably off"
     app.new_yolo_model(img_size,path_yolov7_weights,path_img_i)
